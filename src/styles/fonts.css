@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap');
+
+:root {
+  --font-ui: 'Manrope', 'Segoe UI', sans-serif;
+  --font-display: 'Sora', 'Manrope', 'Segoe UI', sans-serif;
+  --font-score: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+body {
+  font-family: var(--font-ui);
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display);
+}
+
+.score-number {
+  font-family: var(--font-score);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}

@@ -1,0 +1,284 @@
+@keyframes zan-twinkle {
+  0%, 100% {
+    opacity: 0.18;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.82;
+    transform: scale(1.24);
+  }
+}
+
+@keyframes zan-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes zan-pulse {
+  0%, 100% {
+    opacity: 0.32;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.58;
+    transform: scale(1.04);
+  }
+}
+
+.zan-page,
+.zan-public-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(116, 31, 221, 0.18), transparent 32%),
+    radial-gradient(circle at 85% 18%, rgba(212, 175, 55, 0.14), transparent 25%),
+    linear-gradient(135deg, #050816 0%, #0a0d22 32%, #120d33 62%, #050913 100%);
+  color: #f8fafc;
+}
+
+.zan-internal-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(212, 175, 55, 0.1), transparent 22%),
+    radial-gradient(circle at 100% 0%, rgba(99, 102, 241, 0.08), transparent 24%),
+    linear-gradient(180deg, #f7f8fc 0%, #eef2f9 48%, #e8edf7 100%);
+  color: #0f172a;
+}
+
+.zan-panel {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(8, 15, 34, 0.62);
+  box-shadow: 0 22px 60px rgba(2, 8, 24, 0.45);
+  backdrop-filter: blur(18px);
+}
+
+.zan-panel-light {
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 20px 55px rgba(15, 23, 42, 0.1);
+  backdrop-filter: blur(18px);
+}
+
+.zan-gold-text {
+  color: #d4af37;
+  text-shadow: 0 0 22px rgba(212, 175, 55, 0.3);
+}
+
+.zan-brand-grid {
+  position: relative;
+  overflow: hidden;
+}
+
+.zan-brand-grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.78), transparent);
+  pointer-events: none;
+}
+
+.zan-internal-shell {
+  position: relative;
+}
+
+.zan-internal-header {
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.06);
+  backdrop-filter: blur(18px);
+}
+
+.zan-internal-nav {
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+}
+
+.zan-public-nav-link {
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+}
+
+.zan-login-form-panel {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background:
+    linear-gradient(180deg, rgba(9, 15, 35, 0.92), rgba(12, 18, 40, 0.88)),
+    rgba(8, 15, 34, 0.7);
+  box-shadow: 0 24px 70px rgba(2, 8, 24, 0.42);
+  backdrop-filter: blur(22px);
+  color: #f8fafc;
+}
+
+.zan-login-role-tab {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  color: #e2e8f0;
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.zan-login-role-tab:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.zan-login-role-tab[data-active='true'] {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.zan-login-role-tab--employee[data-active='true'] {
+  border-color: rgba(52, 211, 153, 0.38);
+  box-shadow: 0 12px 24px rgba(6, 78, 59, 0.22);
+}
+
+.zan-login-role-tab--admin[data-active='true'] {
+  border-color: rgba(217, 70, 239, 0.34);
+  box-shadow: 0 12px 24px rgba(88, 28, 135, 0.24);
+}
+
+.zan-login-input {
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  border-radius: 1.1rem;
+  background: rgba(15, 23, 42, 0.68);
+  color: #f8fafc;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.zan-login-input::placeholder {
+  color: rgba(203, 213, 225, 0.58);
+}
+
+.zan-login-input:focus {
+  background: rgba(15, 23, 42, 0.82);
+  border-color: rgba(212, 175, 55, 0.72);
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.14);
+}
+
+.zan-login-input:-webkit-autofill,
+.zan-login-input:-webkit-autofill:hover,
+.zan-login-input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #f8fafc;
+  -webkit-box-shadow: 0 0 0 1000px rgba(15, 23, 42, 0.82) inset;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+.zan-login-submit {
+  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.24);
+}
+
+.zan-login-submit[disabled] {
+  box-shadow: none;
+}
+
+.zan-page-hero {
+  background:
+    radial-gradient(circle at 0% 0%, rgba(212, 175, 55, 0.2), transparent 30%),
+    radial-gradient(circle at 100% 0%, rgba(14, 165, 233, 0.12), transparent 28%),
+    linear-gradient(135deg, rgba(9, 15, 35, 0.94), rgba(29, 24, 74, 0.92));
+}
+
+.zan-section-card {
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.92));
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.12);
+}
+
+.zan-muted-card {
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.zan-stat-card {
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background:
+    radial-gradient(circle at top right, rgba(212, 175, 55, 0.12), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(245, 247, 252, 0.95));
+  box-shadow: 0 18px 44px rgba(15, 23, 42, 0.1);
+}
+
+.zan-input,
+.zan-select,
+.zan-textarea {
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.96);
+  color: #0f172a;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.zan-input:focus,
+.zan-select:focus,
+.zan-textarea:focus {
+  border-color: rgba(212, 175, 55, 0.8);
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.18);
+}
+
+.zan-toolbar-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 1rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.zan-toolbar-button:hover {
+  transform: translateY(-1px);
+}
+
+.zan-toolbar-button-primary {
+  background: linear-gradient(135deg, #d4af37, #fbbf24, #fb923c);
+  color: #0f172a;
+}
+
+.zan-toolbar-button-secondary {
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: rgba(255, 255, 255, 0.88);
+  color: #0f172a;
+}
+
+.zan-toolbar-button-secondary:hover {
+  background: rgba(255, 255, 255, 0.96);
+}
+
+@keyframes zan-scale-sway {
+  0%, 100% {
+    transform: rotate(-8deg);
+  }
+  50% {
+    transform: rotate(8deg);
+  }
+}
+
+.zan-scale-illustration {
+  width: min(100%, 600px);
+  filter: drop-shadow(0 34px 74px rgba(15, 23, 42, 0.4));
+}
+
+.zan-scale-beam-group {
+  transform-origin: 50% 27%;
+  transform-box: fill-box;
+  animation: zan-scale-sway 4s ease-in-out infinite;
+}
+
+.zan-scale-glow {
+  animation: zan-pulse 4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zan-scale-beam-group,
+  .zan-scale-glow {
+    animation: none;
+  }
+}

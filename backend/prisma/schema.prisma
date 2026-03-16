@@ -1,0 +1,158 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  ADMIN
+  EMPLOYEE
+}
+
+enum PasswordAlgorithm {
+  BCRYPT
+  ZANQDM_SHA256_V1
+  PLAINTEXT_LEGACY
+}
+
+enum AssetScope {
+  TEMPLATE
+  REVIEW_FILE
+  TV_AUDIO
+  TV_MEME
+  QR
+  OTHER
+}
+
+enum LoginAction {
+  LOGIN
+  LOGOUT
+}
+
+model User {
+  id                 String             @id
+  name               String
+  login              String             @unique
+  role               UserRole
+  passwordHash       String
+  passwordSalt       String?
+  passwordAlgorithm  PasswordAlgorithm  @default(BCRYPT)
+  mustChangePassword Boolean            @default(false)
+  isSuperAdmin       Boolean            @default(false)
+  blocked            Boolean            @default(false)
+  position           String?
+  totalPoints        Int                @default(0)
+  weeklyPoints       Int                @default(0)
+  avatar             String?
+  salary             Int?
+  teamId             String?
+  team               Team?              @relation(fields: [teamId], references: [id], onDelete: SetNull)
+  lastLoginAt        DateTime?
+  lastLogoutAt       DateTime?
+  lastClientId       String?
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+  refreshTokens      RefreshToken[]
+  loginHistory       LoginHistory[]
+
+  @@index([role])
+}
+
+model Team {
+  id        String   @id
+  name      String
+  color     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  users     User[]
+}
+
+model AppState {
+  id                 String   @id
+  prizePool          Int
+  soundEnabled       Boolean
+  services           Json
+  pointsHistory      Json
+  visibilitySettings Json
+  tvAudioSettings    Json
+  tvMemeSettings     Json
+  updatedAt          DateTime @updatedAt
+}
+
+model WebsiteContentState {
+  id        String   @id
+  payload    Json
+  updatedAt DateTime @updatedAt
+}
+
+model TemplateState {
+  id               String   @id
+  templates        Json
+  templateAccess   Json
+  templateUsageLog Json
+  updatedAt        DateTime @updatedAt
+}
+
+model OperationsState {
+  id              String   @id
+  userMeta        Json
+  siteLeads       Json
+  visitorEvents   Json
+  activityLog     Json
+  documentReviews Json
+  notes           Json
+  updatedAt       DateTime @updatedAt
+}
+
+model UploadedAsset {
+  id           String     @id
+  scope        AssetScope
+  originalName String
+  mimeType     String
+  size         Int
+  diskPath     String
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  @@index([scope])
+}
+
+model RefreshToken {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tokenHash String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  revokedAt DateTime?
+}
+
+model LoginHistory {
+  id        String      @id @default(cuid())
+  userId    String
+  user      User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role      UserRole
+  action    LoginAction
+  clientId  String?
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime    @default(now())
+
+  @@index([userId, createdAt])
+}
+
+model AuditLog {
+  id         String    @id @default(cuid())
+  actorId     String?
+  actorRole   UserRole?
+  action      String
+  targetType  String?
+  targetId    String?
+  payload     Json?
+  createdAt   DateTime  @default(now())
+
+  @@index([createdAt])
+}

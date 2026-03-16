@@ -1,0 +1,17 @@
+[Unit]
+Description=ZAN QDM backend
+After=network.target postgresql.service
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/zanqdm/current/backend
+Environment=NODE_ENV=production
+Environment=ENV_FILE=/var/www/zanqdm/shared/backend/.env.production
+ExecStart=/usr/bin/node /var/www/zanqdm/current/backend/dist/server.js
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
